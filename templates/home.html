@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Store</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .pagination a {
+            padding: 10px 15px;
+            margin: 5px;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .pagination a:hover {
+            background: #e68900;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #4caf50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3d8b40;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h2>🛒 Smart Product Store</h2>
+
+<div class="container">
+
+    <div class="grid">
+
+        {% for p in products %}
+        <div class="card">
+            <h3>Product {{ p.product_id }}</h3>
+            <p>Category: {{ p.category }}</p>
+            <p>Price: {{ p.price }} $</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="pagination">
+
+    {% if page > 1 %}
+        <a href="/?page={{ page - 1 }}">⬅ Prev</a>
+    {% endif %}
+
+    <span>Page {{ page }} / {{ total_pages }}</span>
+
+    {% if page < total_pages %}
+        <a href="/?page={{ page + 1 }}">Next ➡</a>
+    {% endif %}
+
+</div>
+
+<form action="/run" method="POST">
+    <input type="number" name="user_key" placeholder="Enter User ID" required>
+    <button type="submit">Get Recommendations</button>
+</form>
+
+</body>
+</html>

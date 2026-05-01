@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .box {
+            background: white;
+            color: black;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        a:hover {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>🎯 Recommendations for User {{ user }}</h2>
+
+<div class="container">
+
+    <div class="grid">
+
+        {% for p in recommendations %}
+        <div class="box">
+            <h3>Product ID: {{ p }}</h3>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<a href="/">⬅ Back to Store</a>
+
+</body>
+</html>
